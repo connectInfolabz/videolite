@@ -20,15 +20,15 @@ def search(request):
 
                 querystring = {"query": f"{query}", "geo": "IN"}
 
-                # headers = {
-                #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-                #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-                # }
-
                 headers = {
-                    "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                    "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                     "x-rapidapi-host": "yt-api.p.rapidapi.com"
                 }
+
+                # headers = {
+                #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+                # }
                 response = requests.get(url, headers=headers, params=querystring)
 
                 context = {"videos":response.json()["data"], "user" : userdata}
@@ -53,15 +53,15 @@ def songs(request):
 
             querystring = {"geo": "IN", "type": "music"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
-
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
             response = requests.get(url, headers=headers, params=querystring)
 
             context = {"videos": response.json()["data"], "user":userdata}
@@ -85,14 +85,14 @@ def movies(request):
 
             querystring = {"geo": "IN", "type": "movies"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
 
             response = requests.get(url, headers=headers, params=querystring)
 
@@ -116,14 +116,14 @@ def games(request):
 
             querystring = {"geo": "IN", "type": "games"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
             response = requests.get(url, headers=headers, params=querystring)
 
             context = {"videos": response.json()["data"], "user":userdata}
@@ -148,15 +148,15 @@ def video(request,vid):
 
             querystring = {"id": f"{vid}", "geo": "IN"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
-
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
 
             videodetails = requests.get(url, headers=headers, params=querystring)
 
@@ -164,10 +164,10 @@ def video(request,vid):
 
             querystring = {"id": f"{vid}", "geo": "IN"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
+            headers = {
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
+                "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            }
 
             related = requests.get(url, headers=headers, params=querystring)
 
@@ -191,15 +191,15 @@ def channel(request,cid):
 
             querystring = {"id": f"{cid}"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
-
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
             response = requests.get(url, headers=headers, params=querystring)
 
             return render(request, "channelDetails.html",context={"channel":response.json()['meta'], "videos": response.json()['data'], "user":userdata})
@@ -288,31 +288,31 @@ def index(request):
             url = "https://yt-api.p.rapidapi.com/trending"
             querystring = {"geo": "IN"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
-
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
             response = requests.get(url, headers=headers, params=querystring)
             return render(request, "index.html",context={"videos":response.json()['data'], "user":userdata})
     except:
         pass
     url = "https://yt-api.p.rapidapi.com/trending"
     querystring = {"geo": "IN"}
-    #
-    # headers = {
-    #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-    #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-    # }
-
+    
     headers = {
-        "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+        "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
         "x-rapidapi-host": "yt-api.p.rapidapi.com"
     }
+
+    # headers = {
+    #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+    #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+    # }
 
     response = requests.get(url, headers=headers, params=querystring)
 
@@ -333,15 +333,15 @@ def playlist(request, cid):
 
             querystring = {"id": f"{cid}"}
 
-            # headers = {
-            #     "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
-            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
-            # }
-
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
             response = requests.get(url, headers=headers, params=querystring)
 
             print(response.json()['meta'])
@@ -367,11 +367,17 @@ def playlistvideos(request, pid):
             url = "https://yt-api.p.rapidapi.com/playlist"
 
             querystring = {"id": f"{pid}"}
-
+            
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
 
             response = requests.get(url, headers=headers, params=querystring)
 
@@ -397,10 +403,16 @@ def about(request, cid):
 
             querystring = {"id": f"{cid}"}
 
+    
             headers = {
-                "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+                "x-rapidapi-key": "2ea054400fmsh0f704edbee5f191p1346d8jsn124804ca4c24",
                 "x-rapidapi-host": "yt-api.p.rapidapi.com"
             }
+
+            # headers = {
+            #     "x-rapidapi-key": "7edecf88a5msh6460eb67921005dp151a03jsn938a4d93e2ec",
+            #     "x-rapidapi-host": "yt-api.p.rapidapi.com"
+            # }
 
             response = requests.get(url, headers=headers, params=querystring)
 
