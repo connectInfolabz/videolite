@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block main %}
+
+         <div class="single-channel-page" id="content-wrapper">
+            <div class="single-channel-image">
+                  <img class="img-fluid" alt="" src="{{channel.banner.3.url}}" style="width:100%; height:250px;">
+               <div class="channel-profile">
+                  <img class="channel-profile-img" alt="" src="{{channel.avatar.2.url}}">
+                  <div class="social hidden-xs">
+                     <a class="fb" href="#">{{channel.videosCountText}}</a>
+                  </div>
+               </div>
+            </div>
+            <div class="single-channel-nav">
+               <nav class="navbar navbar-expand-lg navbar-light">
+                  <a class="channel-brand" href="#">{{channel.title}} <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></span></a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                           <a class="nav-link text-light" href="/channel/{{channel.channelId}}">Videos <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link text-light" href="/playlist/{{channel.channelId}}">Playlist</a>
+                        </li>
+                        <li class="nav-item active">
+                           <a class="nav-link text-light" href="/about/{{channel.channelId}}">About</a>
+                        </li>
+                     </ul>
+                     <form class="form-inline my-2 my-lg-0">
+                        <button class="btn btn-outline-danger btn-sm mr-5">{{channel.videosCountText}}</button> <button class="btn btn-outline-danger btn-sm" type="button">Subscribes <strong>{{channel.subscriberCountText}}</strong></button>
+                     </form>
+                  </div>
+               </nav>
+            </div>
+            <div class="container-fluid">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                      <div class="single-video-info-content box mb-3">
+                          <h6>Title :</h6>
+                          <p>{{channel.title}}</p>
+                          <h6>Joined :</h6>
+                          <p>{{channel.joinedDateText}}</p>
+                          <h6>Country :</h6>
+                          <p>{{channel.country}}</p>
+                          <h6>Total Views</h6>
+                          <p>{{channel.viewCountText}}</p>
+                          <h6> Total Subscribers</h6>
+                          <p>{{channel.subscriberCountText}}</p>
+                          <h6>About :</h6>
+                          <p>{{channel.description}}</p>
+
+                          <h6>Links :</h6>
+                          <p class="tags mb-0">
+                              {%for link in links %}
+                               <a href="https://{{link.link}}" target="_blank">
+                                   <img src="{{link.favicon.8.url}}" style="height:30px;">
+                               </a>
+                              {%endfor%}
+                          </p>
+                       </div>
+                     </div>
+               </div>
+            </div>
+{%endblock%}

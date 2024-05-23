@@ -1,0 +1,167 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block main %}
+
+         <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-8">
+                        <div class="single-video-left">
+                           <div class="single-video">
+                             <div id="player"></div>
+                           </div>
+                           <div class="single-video-title box mb-3">
+                              <h2><a href="#">{{videodetails.title}}</a></h2>
+                              <p class="mb-0"><i class="fas fa-eye"></i> {{videodetails.viewCount}} views</p>
+                           </div>
+                           <div class="single-video-author box mb-3">
+<!--                              <div class="float-right"><button class="btn btn-danger" type="button"> <strong>{{videodetails.subscriberCountText}}</strong></button> <button class="btn btn btn-outline-danger" type="button"><i class="fas fa-bell"></i></button></div>-->
+                              <img class="img-fluid" src="{{videodetails.thumbnail.0.url}}" alt="">
+                              <a href="/channel/{{videodetails.channelId}}"><strong>{{videodetails.channelTitle}}</strong></a> <span title="" data-placement="top" data-toggle="tooltip" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i></span>
+                              <small></small>
+                           </div>
+                           <div class="single-video-info-content box mb-3">
+<!--                              <h6>Cast:</h6>-->
+<!--                              <p>Nathan Drake , Victor Sullivan , Sam Drake , Elena Fisher</p>-->
+                              <h6>Category :</h6>
+                              <p>{{videodetails.category}}</p>
+                              <h6>About :</h6>
+                              <p>{{videodetails.description}}</p>
+<!--                              <h6>Tags :</h6>-->
+<!--                              <p class="tags mb-0">-->
+<!--                                 <span><a href="#">Uncharted 4</a></span>-->
+<!--                                 <span><a href="#">Playstation 4</a></span>-->
+<!--                                 <span><a href="#">Gameplay</a></span>-->
+<!--                                 <span><a href="#">1080P</a></span>-->
+<!--                                 <span><a href="#">ps4Share</a></span>-->
+<!--                                 <span><a href="#">+ 6</a></span>-->
+<!--                              </p>-->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="single-video-right">
+                           <div class="row">
+                              <div class="col-md-12">
+<!--                                 <div class="adblock">-->
+<!--                                    <div class="img">-->
+<!--                                       Google AdSense<br>-->
+<!--                                       336 x 280-->
+<!--                                    </div>-->
+<!--                                 </div>-->
+<!--                                 <div class="main-title">-->
+<!--                                    <div class="btn-group float-right right-action">-->
+<!--                                       <a href="#" class="right-action-link text-gray" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                       Sort by <i class="fa fa-caret-down" aria-hidden="true"></i>-->
+<!--                                       </a>-->
+<!--                                       <div class="dropdown-menu dropdown-menu-right">-->
+<!--                                          <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star"></i> &nbsp; Top Rated</a>-->
+<!--                                          <a class="dropdown-item" href="#"><i class="fas fa-fw fa-signal"></i> &nbsp; Viewed</a>-->
+<!--                                          <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>-->
+<!--                                       </div>-->
+<!--                                    </div>-->
+<!--                                    <h6>Up Next</h6>-->
+<!--                                 </div>-->
+                              </div>
+                              <div class="col-md-12">
+                                 {%for video in relatedvideos%}
+                                 {%if video.videoId == None%}
+                                 {%else%}
+                                 <div class="video-card video-card-list">
+                                    <div class="video-card-image">
+                                       <a class="play-icon" href="/video/{{video.videoId}}"><i class="fas fa-play-circle"></i></a>
+                                       <a href="/video/{{video.videoId}}"><img class="img-fluid" src="{{video.thumbnail.0.url}}" alt=""></a>
+                                       <div class="time">{{video.lengthText}}</div>
+                                    </div>
+                                    <div class="video-card-body">
+                                       <div class="btn-group float-right right-action">
+<!--                                          <a href="#" class="right-action-link text-gray" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                                          <i class="fa fa-ellipsis-v" aria-hidden="true"></i>-->
+<!--                                          </a>-->
+                                          <div class="dropdown-menu dropdown-menu-right">
+                                             <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star"></i> &nbsp; Top Rated</a>
+                                             <a class="dropdown-item" href="#"><i class="fas fa-fw fa-signal"></i> &nbsp; Viewed</a>
+                                             <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>
+                                          </div>
+                                       </div>
+                                       <div class="video-title">
+                                          <a href="#">{{video.title}}</a>
+                                       </div>
+                                       <div class="video-page text-success">
+                                            <a href="/channel/{{video.channelId}}" data-original-title="Verified"><i class="fas fa-check-circle text-success">  {{video.channelTitle}}</i></a>
+                                       </div>
+                                       <div class="video-view">
+                                          {{video.viewCount}} views &nbsp;<i class="fas fa-calendar-alt"></i> {{video.publishedTimeText}} Months ago
+                                       </div>
+                                    </div>
+                                 </div>
+                                 {%endif%}
+                                 {%endfor%}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- /.container-fluid -->
+          <script>
+      // Function to extract video ID from URL
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+      }
+
+      // This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // This function creates an <iframe> (and YouTube player)
+      // after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        var videoId = getParameterByName('video_id');
+        player = new YT.Player('player', {
+          height: '390',
+          width: '100%',
+          videoId: "{{vid}}", // Dynamically set the video ID
+          playerVars: {
+            'playsinline': 1,
+            'autoplay':1
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // The API calls this function when the player's state changes.
+      // The function indicates that when playing a video (state=1),
+      // the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+
+{%endblock%}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Askbootstrap">
+      <meta name="author" content="Askbootstrap">
+      <title>Video Lite</title>
+      <!-- Favicon Icon -->
+      <link rel="icon" type="/static/image/png" href="img/favicon.png">
+      <!-- Bootstrap core CSS-->
+      <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Custom fonts for this template-->
+      <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <!-- Custom styles for this template-->
+      <link href="/static/css/osahan.css" rel="stylesheet">
+      <!-- Owl Carousel -->
+      <link rel="stylesheet" href="/static/vendor/owl-carousel/owl.carousel.css">
+      <link rel="stylesheet" href="/static/vendor/owl-carousel/owl.theme.css">
+   </head>
+   <body class="login-main-body">
+      <section class="login-main-wrapper">
+         <div class="container-fluid pl-0 pr-0">
+            <div class="row no-gutters">
+               <div class="col-12 p-5 bg-white full-height">
+                  <div class="login-main-left">
+                     <div class="text-center mb-5 login-main-left-header pt-4">
+                         <img src="/static/img/favicon.png" class="img-fluid" alt="LOGO">
+                         <h5 class="mt-2 mb-2 text-dark">Welcome to Video Lite</h5>
+                     </div>
+                     <form action="/registeruser" method="post" id="register" >
+                        {%csrf_token%}
+                          <div class="form-group">
+                           <label>Full Name</label>
+                           <input type="text" name="username" class="form-control" placeholder="Enter Full Name" required>
+                        </div>
+                          <div class="form-group">
+                           <label>Email</label>
+                           <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
+                        </div>
+
+                        <div class="form-group">
+                           <label>Mobile number</label>
+                           <input type="number"  name="phone" class="form-control" placeholder="Enter mobile number" oninput="limitInputLength(this,10)" required>
+                        </div>
+
+                        <div class="form-group">
+                           <label>Password</label>
+                           <input type="password" name="password1" class="form-control" placeholder="Password" required>
+                        </div>
+
+                         <div class="form-group">
+                           <label>Confirm Password</label>
+                           <input type="password" name="password2" class="form-control" placeholder="Password" required>
+                        </div>
+
+                         <span id="passwordError" class="text-danger">
+                         </span>
+
+                        <div class="mt-4">
+                           <button type="submit" class="btn btn-outline-primary btn-block btn-lg">Sign Up</button>
+                        </div>
+                     </form>
+                     <div class="text-center mt-5">
+                        <p class="light-gray">Already have an Account? <a href="/login" class="text-danger">Sign In</a></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <script>
+            function limitInputLength(inputElement, maxLength) {
+            var inputValue = inputElement.value.toString();
+
+            // Remove any non-numeric characters
+            inputValue = inputValue.replace(/[^0-9]/g, '');
+
+            // Truncate to the specified length
+            inputValue = inputValue.slice(0, maxLength);
+
+            // Update the input value
+            inputElement.value = inputValue;
+
+            // You can also perform additional actions or validation if needed
+          }
+
+          function setupFormValidation(formId) {
+            var form = document.getElementById(formId);
+            form.addEventListener('submit', function (event) {
+              // Reset error messages
+              clearErrors(form);
+
+              // Validate password
+              var passwordInput = form.querySelector('[name="password1"]');
+              var confirmPasswordInput = form.querySelector('[name="password2"]');
+              var password = passwordInput.value.trim();
+              var confirmPassword = confirmPasswordInput.value.trim();
+
+              if (password !== confirmPassword) {
+                displayError(form, 'passwordError', 'Passwords do not match');
+                event.preventDefault();
+              } else if (!isValidPassword(password)) {
+                displayError(form, 'passwordError', 'Password should contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character, and be between 8 and 16 characters.');
+                event.preventDefault();
+              }
+            });
+          }
+
+          function isValidPassword(password) {
+            // Password should contain at least 1 uppercase, 1 lowercase, 1 number, 1 special character, and be between 8 and 16 characters.
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+            return passwordRegex.test(password);
+          }
+
+          function displayError(form, id, message) {
+            var errorElement = form.querySelector('#' + id);
+            errorElement.textContent = message;
+          }
+
+          function clearErrors(form) {
+            var errorElements = form.getElementsByClassName('error');
+            for (var i = 0; i < errorElements.length; i++) {
+              errorElements[i].textContent = '';
+            }
+          }
+
+          setupFormValidation('register');
+      </script>
+
+      <!-- Bootstrap core JavaScript-->
+      <script src="/static/vendor/jquery/jquery.min.js"></script>
+      <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+      <!-- Owl Carousel -->
+      <script src="/static/vendor/owl-carousel/owl.carousel.js"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="/static/js/custom.js"></script>
+   </body>
+</html>

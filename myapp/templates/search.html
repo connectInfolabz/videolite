@@ -1,0 +1,65 @@
+
+{%extends 'base.html'%}
+{%load static%}
+{% block main %}
+         <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="top-mobile-search">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <form class="mobile-search">
+                           <div class="input-group">
+                             <input type="text" placeholder="Search for..." class="form-control">
+                               <div class="input-group-append">
+                                 <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                               </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <h6>Featured Videos</h6>
+                        </div>
+                     </div>
+                     {%if videos%}
+                     {%for video in videos%}
+                     {%if video.videoId == None%}
+                     {%else%}
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="video-card">
+                           <div class="video-card-image">
+                              <a class="play-icon" href="/video/{{video.videoId}}"><i class="fas fa-play-circle"></i></a>
+                              <a href="/video/{{video.videoId}}"><img class="img-fluid" src="{{video.thumbnail.0.url}}" alt=""></a>
+                              <div class="time">{{video.lengthText}}</div>
+                           </div>
+                           <div class="video-card-body">
+                              <div class="video-title">
+                                 <a href="/video/{{video.videoId}} ">{{video.title}}</a>
+                              </div>
+                              {%load custom_filters%}
+                              <div class="video-page text-success">
+                                 <a title="/{{video.channelTitle}}" data-placement="top" data-toggle="tooltip" href="/chanelDetails/{{video.channelId}}" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i>{{video.channelTitle}}</a>
+                              </div>
+<!--                              <div class="video-page text-success">-->
+<!--                                 <a title="/{{video.snippet.channelTitle}}" data-placement="top" data-toggle="tooltip" href="https://www.youtube.com/@{{video.snippet.channelTitle|remove_spaces}}" data-original-title="Verified"><i class="fas fa-check-circle text-success"></i>{{video.snippet.channelTitle}}</a>-->
+<!--                              </div>-->
+                              <div class="video-view">
+                                 <i class="fas fa-calendar-alt"></i> {{video.publishedTimeText}}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     {%endif%}
+                     {%endfor%}
+                  {%else%}
+                     <h1>No Data FOund</h1>
+                     {%endif%}
+                  </div>
+               </div>
+               <hr class="mt-0">
+
+{%endblock%}
